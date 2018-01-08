@@ -25,19 +25,41 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li>
-          <a href="#">Category</a>
+        <li><a href="index">Home</a></li>
+       <li><a href="contact"><i class="fa fa-adress-book" aria-hidden="true"></i></a>
+         
+        <li><a href="adding">Admin</a></li>
         
-        </li>
-        <li><a href="#">Discounts</a></li>
-       
-        </ul>  
+ <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin List<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+        <li><a href="${pageContext.request.contextPath}/productList">Product</a></li>
+        <li><a href="${pageContext.request.contextPath}/supplierList">Supplier</a></li>
+        <li><a href="${pageContext.request.contextPath}/categoryList">Category</a></li>
+        
+        </ul>
+        </li>  
+           
+         
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="goToSignUP"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
-        <li><a href="goToLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+      <c:if test="${pageContext.request.userPrincipal.name==null}">
+        <li><a href="${pageContext.request.contextPath}/goToSignUp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+        <li><a href="${pageContext.request.contextPath}/goToLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </c:if>
+        <c:if test="${pageContext.request.userPrincipal.name==null}">
+        <li><a>Welcome:${pageContext.request.userPrincipal.name}</a></li>
+        <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+        </c:if>
+        
+       
         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+      </ul>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      category choice<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+      <c:forEach var="catval" items="${catList}">
+      <li><a href="${pageContext.request.contextPath} /productCustList?cid=${catval.cid}">${catval.cname}</a>
+      </li>
+      </c:forEach>
       </ul>
      
     </div>

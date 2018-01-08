@@ -8,7 +8,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\17.jpg" background-size="cover">
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\17.jpg">
 
 
 
@@ -28,7 +28,7 @@
     <img class="img-rounded"class="image-responsive center block" src="C:\Users\SHIVANVITHAAMMULU\Desktop\project\1.jpg"  style="width:100%"/>
   </div>
    <div class="item">
-    <img class ="img-rounded"class="image-responsive center block"src="C:\Users\SHIVANVITHAAMMULU\Desktop\project\6.jpg" style="width:100%;hight:100%"/>
+    <img class ="img-rounded"class="image-responsive center block"src="C:\Users\SHIVANVITHAAMMULU\Desktop\project\18.jpg" style="width:100%;hight:100%"/>
   </div>
   <div class="item">
     <img class ="img-rounded"class="image-responsive center block" src="C:\Users\SHIVANVITHAAMMULU\Desktop\project\11.jpg" style="width:100%"/>

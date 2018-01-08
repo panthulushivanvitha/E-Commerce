@@ -1,5 +1,4 @@
 
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,7 +17,7 @@
 </head>
   
 </head>
-<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\16.jpg" background="100% 100%">
+<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\3.jpg" background="100% 100%">
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,8 +34,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="http://localhost:8080/medical/">HOME</a></li>
-                    <li><a href="http://localhost:8080/medical/registration">register</a></li>
+                    <li><a href="http://localhost:8080/HOMEDECORS1/">HOME</a></li>
+                    <li><a href="goToSignUp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
                   
                 </ul>
                  </div>
@@ -44,20 +43,20 @@
 </div>
 
 </body>
-<form  method="post" class="form-horizontal" >
+<form  action="${pageContext.request.contextPath}/Login" method="post" class="form-horizontal" >
 
 <h1 align="center">LOGIN</h1>
 	<div class="form-group">
 		<label for="User Email" class="col-xs-4 control-label">Email</label>
 		<div class="col-xs-4">
-			<input name="j_username" type="email"  placeholder=" User Email" class="form-control" />
+			<input name="username" type="email"  placeholder=" User Email" class="form-control" />
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="code" class="col-xs-4 control-label">Password</label>
 		<div class="col-xs-4">
-			<input name="j_password"  type="password" placeholder="User Password" class="form-control" />
+			<input name="password"  type="password" placeholder="User Password" class="form-control" />
 		</div>
 	</div>
             
