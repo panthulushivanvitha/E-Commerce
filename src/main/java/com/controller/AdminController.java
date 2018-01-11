@@ -35,12 +35,7 @@ public class AdminController
 	ProductDAOImpl  productDAOImpl;
 
 
-	@RequestMapping("/admin/index")
-	public String home()
-	{
 	
-		return "index";
-	}
 	@RequestMapping("/admin/adding")
 	public String adding()
 	{

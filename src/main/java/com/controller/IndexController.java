@@ -92,11 +92,13 @@ public class IndexController
 		
 		
 	}
+	
 	@RequestMapping("/userLogged")
-	public String userlogged()
-	{
+      public String login(){
 		return "redirect:/index";
 	}
+      
+	
 	@RequestMapping("/error")
 	public String userError()
 	{

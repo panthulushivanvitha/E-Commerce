@@ -12,16 +12,17 @@
           http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
 <security:http auto-config="true">
-<security:intercept-url pattern="/webapp/resources/**" access="permitAll"/>
-<security:intercept-url pattern="/Login" access="permitAll"/>
+
 <security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
 <security:form-login
 login-page="/Login"
+login-processing-url="/j_spring_security_check"
 username-parameter="username"
 password-parameter="password"
 authentication-success-forward-url="/userLogged"
 authentication-failure-forward-url="/error"/>
-<security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
+<security:logout  logout-url="/j_spring_security_logout"
+invalidate-session="true" logout-success-url="/"/>
 <security:access-denied-handler error-page="/error"/>
 <security:csrf disabled="true"/>
 </security:http>
