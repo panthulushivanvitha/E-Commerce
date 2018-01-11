@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dao.SupplierDAO;
+
 import com.model.Supplier;
 
 @Repository
@@ -28,7 +29,7 @@ public class SupplierDAOImpl implements SupplierDAO
 	{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		session.persist(supplier);
+		session.saveOrUpdate(supplier);
 	
 		session.getTransaction().commit();
 		
@@ -58,7 +59,29 @@ public class SupplierDAOImpl implements SupplierDAO
 		}
 		return s;
 	}
+
+
+	
+	public void updateSupp(Supplier s)
+	{
+	Session session=sessionFactory.openSession();
+	session.beginTransaction();
+	session.update(s);
+	session.getTransaction().commit();
+	}
+
+	public void deleteSupp(int sid) {
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Supplier s=(Supplier)session.get(Supplier.class,sid);
+		session.delete(s);
+		session.getTransaction().commit();
+	}
 }
+		
+	
+		
+
 
 
 

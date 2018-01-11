@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.*;
 import com.model.Category;
+import com.model.Supplier;
 
 
 @Repository
@@ -56,6 +57,22 @@ public class CategoryDAOImpl implements CategoryDAO
 			session.getTransaction().rollback();
 		}
 		return c;
+	}
+
+	public void updateCat(Category c)
+	{
+	Session session=sessionFactory.openSession();
+	session.beginTransaction();
+	session.update(c);
+	session.getTransaction().commit();
+	}
+	public void deleteCat(int cid)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Category c=(Category)session.get(Category.class,cid);
+		session.delete(c);
+		session.getTransaction().commit();
 	}
 
 }

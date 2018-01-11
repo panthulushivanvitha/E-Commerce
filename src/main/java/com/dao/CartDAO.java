@@ -1,6 +1,10 @@
 /*package com.dao;
 
-public interface CartDAO {
+import com.model.Cart;
+
+public interface CartDAO 
+{
+	public void insert(Cart cart);
 
 }
 */

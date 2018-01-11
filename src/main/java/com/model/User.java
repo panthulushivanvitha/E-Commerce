@@ -18,17 +18,21 @@ public class User implements  Serializable
 	private int id;
 	private String username;
 	private String email;
-	private String enable;
-
+	private boolean enable;
 	private String password;
 	private String role;
 
 	private String contact;
 	
-	public String getEnable() {
+
+
+	public boolean isEnable() {
 		return enable;
 	}
-	public void setEnable(String enable) {
+
+	
+	public void setEnable(boolean enable) 
+	{
 		this.enable = enable;
 	}
 
@@ -81,6 +85,7 @@ public class User implements  Serializable
 	{
 		this.contact = contact;
 	}
+	
 	
 	
 }	

@@ -70,13 +70,7 @@ public List<Product> getProdByCatId( int cid) {
 	
 	return prod;
 }
-public void updateprod(Product p)
-{
-Session session=sessionFactory.openSession();
-session.beginTransaction();
-session.update(p);
-session.getTransaction().commit();
-}
+
 public void deleteProd(int pid)
 {
 	Session session=sessionFactory.openSession();
@@ -84,6 +78,14 @@ public void deleteProd(int pid)
 	Product p=(Product)session.get(Product.class,pid);
 	session.delete(p);
 	session.getTransaction().commit();
+}
+
+public void update(Product p) {
+	Session session=sessionFactory.openSession();
+	session.beginTransaction();
+	session.update(p);
+	session.getTransaction().commit();
+	
 }
 
 
