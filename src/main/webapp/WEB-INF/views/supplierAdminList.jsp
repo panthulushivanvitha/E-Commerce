@@ -17,8 +17,6 @@
 <th>Sl No</th>
 <th>Supplier ID</th>
 <th>Supplier Name</th>
-
-
 <th class="span2">Action</th>
 </tr>
 <c:if test="${empty satList}">
@@ -36,7 +34,7 @@
 
 <td><c:set var="contextRoot" value="${pageContext.request.contextPath}"></c:set>
 <a class="btn btn-info" role="button" href="${contextRoot}/Edit">Edit</a>
-<a class="btn btn-danger" role="button" href="${contextRoot}/Delete">Delete</a>
+<a class="btn btn-danger" role="button" href="<c:url value="/deleteSupp/${p.sid}"/>">Delete</a>
 
 
 <tr>

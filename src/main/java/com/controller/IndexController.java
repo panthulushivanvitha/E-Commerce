@@ -62,6 +62,7 @@ public class IndexController
 		}
 		else{
 			user.setRole("ROLE_USER");
+			user.setEnable(true);
 			userDAO.insertUser(user);
 			mv.setViewName("index");
 			}

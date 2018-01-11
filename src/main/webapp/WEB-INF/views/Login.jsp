@@ -1,4 +1,4 @@
-
+<%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -43,20 +43,23 @@
 </div>
 
 </body>
-<form  action="${pageContext.request.contextPath}/Login" method="post" class="form-horizontal" >
+<c:if test="${not empty msg}">
+           <div class="msg">${msg}</div>
+       </c:if>
+<form  name="loginform" action="<c:url value="/j_spring_security_check"/>"  method="post" class="form-horizontal" >
 
 <h1 align="center">LOGIN</h1>
 	<div class="form-group">
-		<label for="User Email" class="col-xs-4 control-label">Email</label>
+		<label for="username" class="col-xs-4 control-label">Email</label>
 		<div class="col-xs-4">
-			<input name="username" type="email"  placeholder=" User Email" class="form-control" />
+			<input name="username" type="email" id="username" placeholder=" User Email" class="form-control" />
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="code" class="col-xs-4 control-label">Password</label>
 		<div class="col-xs-4">
-			<input name="password"  type="password" placeholder="User Password" class="form-control" />
+			<input name="password"  type="password" placeholder="User Password" id="password" class="form-control" />
 		</div>
 	</div>
             
@@ -68,27 +71,13 @@
 		</div>
 	</div> 
             
-          <center>  <div class="checkbox">
-                <div class="checkbox">
-                    <label>
-                      <input type="checkbox">Remember me</label> 
-                </div>
-            </div></center>
-            
-            
-            
-            
-            
-            
-            
-            <!-- <button class="btn btn-primary  btn-lg btn-signin" type="submit"><span class="glyphicon glyphicon-off"></span>Sign in</button> -->
-            
-      <center>  <form><a href="#" class="forgot-password">Forgot password?</a></form></center>
+       <input type = "hidden" name= "${_csrf.parameterName}" value="${_csrf.token}"/>
+       </form>
         
         
 
 	
-</form>
+
  
 </body>
 

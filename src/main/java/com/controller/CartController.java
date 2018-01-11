@@ -35,8 +35,8 @@ UserDAOImpl userDAOImpl;
 public ModelAndView prodDet(@PathVariable("pid")int pid)
 {
 	ModelAndView mv= new ModelAndView();
-	Product prod=productDAOImpl.findByPID(pid);
-	mv.addObject("prod",prod);
+	Product p=productDAOImpl.findByPID(pid);
+	mv.addObject("product",p);
 	mv.setViewName("prodDetails");
 	
 	return mv;

@@ -44,7 +44,8 @@
 <td><img src="${pageContext.request.contextPath}/resources/${p.imagName}" height="50px" width="50px"></td>
 
 <td><c:set var="contexRoot" value="${pageContext.request.contextPath}"></c:set>
-<a class="btn btn-info" role="button" href="${contextRoot}/updateProd?pid=<c:out value="${p.pid}"></c:out>"/>Edit</a>
+
+<a class="btn btn-info" role="button" href="<c:url value="/updateProd/${p.pid}"/>"/>Edit</a>
 <a class="btn btn-danger" role="button" href="<c:url value="/deleteProd/${p.pid}"/>">Delete</a>
 
 <tr>

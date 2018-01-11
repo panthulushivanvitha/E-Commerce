@@ -36,7 +36,7 @@
 
 <td><c:set var="contextRoot" value="${pageContext.request.contextPath}"></c:set>
 <a class="btn btn-info" role="button" href="${contextRoot}/admin/Edit">Edit</a>
-<a class="btn btn-danger" role="button" href="${contextRoot}/admin/Delete">Delete</a>
+<a class="btn btn-danger" role="button" href="<c:url value="/deleteCat/${p.cid}"/>">Delete</a>
 
 
 <tr>

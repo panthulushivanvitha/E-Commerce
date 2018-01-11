@@ -9,9 +9,8 @@
 </head>
 <body>
 
-
-<c:url value="/productUpdate" var="pru"></c:url>
-<form  method="post" action="productUpdate" enctype="multipart/form-data">
+<c:url value="/ProductUpdate" var="pru"></c:url>
+<form  method="post" action="ProductUpdate" enctype="multipart/form-data">
 <span id="reauth-email" class="reauth-email"></span>
 
 <input type="hidden" name="pid" value="${prod.pid}">
