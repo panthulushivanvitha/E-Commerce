@@ -13,22 +13,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.dao.CategoryDAO;
-import com.dao.ProductDAO;
-import com.dao.SupplierDAO;
-
-
-import com.dao.UserDAO;
-import com.daoimpl.CategoryDAOImpl;
-import com.daoimpl.ProductDAOImpl;
-import com.daoimpl.SupplierDAOImpl;
-
-import com.daoimpl.UserDAOImpl;
-import com.model.Category;
-import com.model.Product;
-import com.model.Supplier;
-
-import com.model.User;
+import com.dao.*;
+import com.daoimpl.*;
+import com.model.*;
 
 @Configuration
 @ComponentScan("com")
@@ -65,6 +52,10 @@ private Properties getHiber()
     	lsfb.addAnnotatedClass(Supplier.class);
     	lsfb.addAnnotatedClass(Category.class);
     	lsfb.addAnnotatedClass(Product.class);
+ 	lsfb.addAnnotatedClass(Cart.class);
+    	lsfb.addAnnotatedClass(Address.class);
+    	lsfb.addAnnotatedClass(Orders.class);
+    	lsfb.addAnnotatedClass(Payment.class);
     	return lsfb.buildSessionFactory();
     }
     
@@ -100,10 +91,39 @@ private Properties getHiber()
     }
  
     @Autowired
-    @Bean(name="ProductDAO")
+    @Bean(name="productDAO")
     public ProductDAO saveProdData(SessionFactory sessionFactory)
     {
     	return new ProductDAOImpl(sessionFactory);
     }
+    @Autowired
+	@Bean(name="cartDAO")
+	public CartDAO getCart(SessionFactory sessionFactory)
+	{
+		return new CartDAOImpl(sessionFactory);
+		
+	}
+	@Autowired
+	@Bean(name = "addressDAO")
+	public AddressDAO getAddressDAO(SessionFactory sessionFactory)
+	{
+
+		return new AddressDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "ordersDAO")
+	public OrdersDAO getOrdersDAO(SessionFactory sessionFactory)
+	{
+
+		return new OrdersDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "paymentDAO")
+	public PaymentDAO getPaymentDAO(SessionFactory sessionFactory)
+	{
+
+		return new PaymentDAOImpl(sessionFactory);
+	}
 }
+
 

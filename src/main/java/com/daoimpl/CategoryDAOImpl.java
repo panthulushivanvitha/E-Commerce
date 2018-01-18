@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.*;
 import com.model.Category;
-import com.model.Supplier;
 
 
 @Repository
