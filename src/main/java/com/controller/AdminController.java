@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.daoimpl.*;
 import com.model.*;
 
@@ -34,15 +36,14 @@ public class AdminController
 	@Autowired
 	ProductDAOImpl  productDAOImpl;
 
-
 	
-	@RequestMapping("/admin/adding")
+	@RequestMapping("/adding")
 	public String adding()
 	{
 		return "adding";
 	}
 	
-	@RequestMapping(value="/admin/saveSupp",method=RequestMethod.POST)
+	@RequestMapping(value="/saveSupp",method=RequestMethod.POST)
 	@Transactional
 	public ModelAndView saveSuppData(@RequestParam("sid") int sid,@RequestParam("sname")String sname)
 	{
@@ -54,7 +55,7 @@ public class AdminController
 		mv.setViewName("adding");
 		return mv;
 	}
-	@RequestMapping(value="/admin/saveCat",method=RequestMethod.POST)
+	@RequestMapping(value="/saveCat",method=RequestMethod.POST)
 	@Transactional
 	public ModelAndView saveCatData(@RequestParam("cid") int cid,@RequestParam("cname") String cname)
 	{
@@ -65,7 +66,7 @@ public class AdminController
 		mv.setViewName("adding");
 		return mv;
 	}
-	@RequestMapping(value="/admin/saveProduct",method=RequestMethod.POST)
+	@RequestMapping(value="/saveProduct",method=RequestMethod.POST)
 	@Transactional
 	public String saveprod(HttpServletRequest request,@RequestParam("file")MultipartFile file)
 	{
@@ -101,6 +102,12 @@ public class AdminController
 
 		
 	}
+	@RequestMapping("editcategory/{cid}")
+	public String editCategory(@PathVariable("cid") int cid, Model model,RedirectAttributes attributes) {
+		System.out.println("editCategory");
+		attributes.addFlashAttribute("category", this.categoryDAOImpl. findByCatId(cid));
+		return "redirect:/adding";
+	}
 
 	
 	@ModelAttribute
@@ -111,7 +118,7 @@ public class AdminController
 		m.addAttribute("prodList",productDAOImpl.retrieve());
 
 	}
-	@RequestMapping("/admin/productList")
+	@RequestMapping("/productList")
 	public ModelAndView prodlist()
 	{
 	ModelAndView mv= new ModelAndView();
@@ -120,7 +127,7 @@ public class AdminController
 	return mv;
 	}
 	
-	@RequestMapping("/admin/supplierList")
+	@RequestMapping("/supplierList")
 	public ModelAndView satlist()
 	{
 		ModelAndView mv= new ModelAndView();
@@ -129,7 +136,7 @@ public class AdminController
 		return mv;
 		
 	}
-	@RequestMapping("/admin/categoryList")
+	@RequestMapping("/categoryList")
 	public ModelAndView catlist()
 	{
 		ModelAndView mv= new ModelAndView();
@@ -144,13 +151,13 @@ public class AdminController
 	public String deleteSupplier(@PathVariable("sid")int sid)
 	{
 		supplierDAOImpl.deleteSupp(sid);
-		return "redirect:/admin/supplierList?del";
+		return "redirect:/supplierList?del";
 	}
 	@RequestMapping("/deleteCat/{cid}")
 	public String deleteCategory(@PathVariable("cid")int cid)
 	{
 		categoryDAOImpl.deleteCat(cid);
-		return "redirect:/admin/categoryList?del";
+		return "redirect:/categoryList?del";
 	}
     
 
@@ -159,13 +166,13 @@ public class AdminController
 	public String deleteProduct(@PathVariable("pid")int pid)
 	{
 		productDAOImpl.deleteProd(pid);
-		return "redirect:/admin/productList?del";
+		return "redirect:/productList?del";
 	}
 	
 	
 
 	
-	@RequestMapping("/updateProd , /updateProd/{pid}")
+	@RequestMapping("/updateProd")
 	public ModelAndView updateproduct(@RequestParam("pid") int pid)
 	{
 		ModelAndView mv= new ModelAndView();
@@ -176,7 +183,7 @@ public class AdminController
 		mv.setViewName("updateProduct");
 		return mv;
 	}
-	@RequestMapping(value="/ProductUpdate",method=RequestMethod.POST)
+	@RequestMapping(value="/productUpdate",method=RequestMethod.POST)
 	public String updateprod(HttpServletRequest request,@RequestParam("file")MultipartFile file)
 	{
 		String pid= request.getParameter("pid");
@@ -209,7 +216,7 @@ public class AdminController
 		{
 			e.printStackTrace();
 		}
-		return "redirect:/admin/productList?update";
+		return "redirect:/productList?update";
 		
 	}
 
