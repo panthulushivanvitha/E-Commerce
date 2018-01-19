@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\22.jpg">
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 

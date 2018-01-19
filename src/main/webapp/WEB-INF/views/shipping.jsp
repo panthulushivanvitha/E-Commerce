@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 <div id="wrap">
 <div class="container clear-top">
 <c:if test="${not empty addressList}">
@@ -157,4 +158,4 @@
 </div>
 </div>
 </body>
-</html> --%>
+</html> 

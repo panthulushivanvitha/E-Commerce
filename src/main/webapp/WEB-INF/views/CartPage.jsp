@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -24,7 +24,10 @@
     }
 </style>
 </head>
-<body>
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\23.jpg">
+<jsp:include page="header.jsp"></jsp:include>
+
+
 
 <div class="container">
     <div class="row">
@@ -47,7 +50,10 @@
                      
                         <td class="col-sm-8 col-md-6">
                         <div class="thumbnail">
-                         <a class="thumbnail pull-left" href="#"> <img src="/FrontEcom/imageDisplay?id=${cart.productid}" style="height:50px;height: 50px" > </a>
+                         <a class="thumbnail pull-left" href="">
+                         <img height="100px"
+						width="100px" alt="${cart.productid}"
+						src="<c:url value="/resources/${cart.productid}.jpg"></c:url>"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${cart.productName}</a></h4>
                                 <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
@@ -66,12 +72,29 @@
                         <a href="removeCart/${cart.cartid }" type="button" class="btn btn-danger">
                           <span class="glyphicon glyphicon-remove"></span> Remove
                         </a>
+                        <br><br>
+                         <a href="editCart/${cart.cartid }" type="button" class="btn btn-info btn-lg ">
+                          <span class="glyphicon glyphicon-update"></span> updatecart
+                        </a>
                         
                         </td>
                           </tr>
                           
                     </c:forEach>   
-                          
+                           <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Subtotal</h5></td>
+                        <td class="text-right"><h5><strong>${cart.SubTotal}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Estimated shipping</h5></td>
+                        <td class="text-right"><h5><strong>50/-</strong></h5></td>
+                    </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>

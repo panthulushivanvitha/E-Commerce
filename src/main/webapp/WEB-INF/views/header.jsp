@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<head>
-  <title>HOME DECORS</title>
+<title>HOME DECORS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -30,7 +29,7 @@
             
       <ul class="nav navbar-nav navbar-right">
       <c:if test="${pageContext.request.userPrincipal.name==null}">
-        <li><a href="${pageContext.request.contextPath}/goToSignUp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+        <li><a href="${pageContext.request.contextPath}/goToRegister"><span class="glyphicon glyphicon-user"></span> Register</a></li>
         <li><a href="${pageContext.request.contextPath}/goToLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </c:if>
         <c:if test="${pageContext.request.userPrincipal.name !=null}">
@@ -53,7 +52,7 @@
            
     
        
-        <li><a href="${pageContext.request.contextPath}/goToCart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart
+        <li><a href="${pageContext.request.contextPath}/viewcart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart
         <i class="fa fa-cart-plus" aria-hidden="true"></i></a></li>
       </ul>
         <!-- <div class="dropdown">

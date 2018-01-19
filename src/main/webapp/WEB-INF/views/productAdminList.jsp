@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
+<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\22.jpg">
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <div class="container">
 <h2>Product List For Admin</h2>
@@ -39,8 +39,9 @@
 <td><c:out value="${p.supplier.sname}"></c:out></td>
 <td><c:out value="${p.category.cname}"></c:out></td>
 <td class="span3"><c:out value="${p.pdescription}"></c:out></td>
-<td><c:out value="${p.price}"></c:out></td>
 <td><c:out value="${p.pstock}"></c:out></td>
+<td><c:out value="${p.price}"></c:out></td>
+
 <td><img src="${pageContext.request.contextPath}/resources/${p.imagName}" height="50px" width="50px"></td>
 
 <td><c:set var="contexRoot" value="${pageContext.request.contextPath}"></c:set>

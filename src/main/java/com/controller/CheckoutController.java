@@ -57,7 +57,7 @@ public class CheckoutController
 		Address address = addressDAO.getAddressById(id);
 		session.setAttribute("address", address);
 		attributes.addFlashAttribute("address", address);
-		attributes.addFlashAttribute("cartTotalAmount", cartDAO.CartPrice(user.getId()));
+		attributes.addFlashAttribute("cartTotalAmount", cartDAO.CartPrice((String) session.getAttribute("email")));
 		
 		return "redirect:/showpaymentPage";
 	}
@@ -68,14 +68,16 @@ public class CheckoutController
 			System.out.println(result.getAllErrors().toString());
 			return "shipping";
 		}else{
+			
 		User user = (User) session.getAttribute("user");
 		address.setCreatedBy("SYSTEM");
 		address.setCreatedTimestamp(new Timestamp(System.currentTimeMillis()));
-		
+		address.setPersonId((Integer) session.getAttribute("id"));
 		addressDAO.saveOrUpdate(address);
 		session.setAttribute("address", address);
 		attributes.addFlashAttribute("address", address);
-		
+		attributes.addFlashAttribute("cartTotalAmount", cartDAO.CartPrice((String) session.getAttribute("email")));
+
 		return "redirect:/showpaymentPage";
 		}
 	}
@@ -84,7 +86,7 @@ public class CheckoutController
 		User user = (User) session.getAttribute("user");
 		Address address = (Address) session.getAttribute("address");
 		model.addAttribute("address", address);
-		
+		model.addAttribute("cartTotalAmount", cartDAO.CartPrice((String) session.getAttribute("email")));
 		return "paymentPage";
 	}
 	
