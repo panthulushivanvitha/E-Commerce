@@ -19,7 +19,7 @@ public class Cart {
 	private int productQuantity;
 	private double subTotal;
 	private String status;
-	private int userId;
+	private  String email;
 	
 	public int getCartid() {
 		return cartid;
@@ -63,11 +63,13 @@ public class Cart {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getUserId() {
-		return userId;
+	public String getEmail() {
+		return email;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+
 	
 }

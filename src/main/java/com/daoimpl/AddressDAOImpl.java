@@ -69,32 +69,32 @@ private static Logger log = LoggerFactory.getLogger(AddressDAOImpl.class);
 
 
 	@Transactional
-	public List<Address> getAllAddressOfUser(int userId) {
+	public List<Address> getAllAddressOfUser( String email) {
 		log.info("AddressDaoImpl : get Session Factory");
 		Session session = sessionFactory.getCurrentSession();
-		log.info("AddressDaoImpl : load all Address details of given user Id --"+userId);
+		log.info("AddressDaoImpl : load all Address details of given user Id --"+email);
 		CriteriaBuilder cb =  session.getCriteriaBuilder();
 		CriteriaQuery<Address> cq = cb.createQuery(Address.class);
 		
 		Root<Address> addressRoot  = cq.from(Address.class);
 		ParameterExpression<Integer> personId = cb.parameter(Integer.class);
 		
-		cq.select(addressRoot).where(cb.equal(addressRoot.get("personId"), userId));
+		cq.select(addressRoot).where(cb.equal(addressRoot.get("personId"), email));
 		
 		Query query = session.createQuery(cq);
 		
 		log.info("AddressDaoImpl : criteria query of Address details of given user Id --"+query.toString());
 		@SuppressWarnings(value="unchecked")
 		List<Address> results = (List<Address>) query.getResultList();
-		log.info("AddressDaoImpl : Successful retrieval of Address details of given user Id --"+userId);
+		log.info("AddressDaoImpl : Successful retrieval of Address details of given user Id --"+email);
 		return results;
 	}
 	
 	@Transactional
-	public Address getAddressOfUser(int userId) {
+	public Address getAddressOfUser(String email) {
 	
 		Session session = sessionFactory.openSession();
-		Address address = session.createQuery("from Address where personId = :userId",Address.class).setParameter("userId", userId).uniqueResult();
+		Address address = session.createQuery("from Address where personId = :userId",Address.class).setParameter("email", email).uniqueResult();
 		session.close();
 		return address;
 	}

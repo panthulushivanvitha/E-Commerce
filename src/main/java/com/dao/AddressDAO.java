@@ -12,9 +12,9 @@ public boolean saveOrUpdate(Address address);
 	
 	public boolean deleteAddressById(int addressId);
 	
-	public List<Address> getAllAddressOfUser(int userId);
+	public List<Address> getAllAddressOfUser(String email);
 	
-	public Address getAddressOfUser(int userId);
+	public Address getAddressOfUser(String email);
 
 
 }

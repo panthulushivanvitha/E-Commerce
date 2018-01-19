@@ -51,6 +51,7 @@ public class Address
 	@Pattern(regexp="\\d{10}",message="The mobile number must be a 10 digit number")
 	private String phone;
 	
+	@GeneratedValue
 	private int personId;
 	
 	@NotNull(message="The address type cannot be left blank")

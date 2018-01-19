@@ -35,8 +35,8 @@ public CartDAOImpl(){}
 
 	
 	@Transactional
-	public Cart getitem(int prodId, int userId) {
-		String hql = "from"+" Cart"+" where userid="+userId+" and productid="+prodId;
+	public Cart getitem(int prodId, String email) {
+		String hql = "from"+" Cart"+" where email="+email+" and productid="+prodId;
 		@SuppressWarnings("rawtypes")
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -68,11 +68,11 @@ public CartDAOImpl(){}
 
 @SuppressWarnings("deprecation")
 @Transactional
-public long cartsize(int userId) {
+public long cartsize(String email) {
 	Criteria c=sessionFactory.getCurrentSession().createCriteria(Cart.class);
-	c.add(Restrictions.eq("userId", userId));
+	c.add(Restrictions.eq("email", email));
 	c.add(Restrictions.eq("status","C"));
-	c.setProjection(Projections.count("userId"));
+	c.setProjection(Projections.count("email"));
 	long count= (Long) c.uniqueResult();
 	return count;
 }
@@ -80,9 +80,9 @@ public long cartsize(int userId) {
 
 @SuppressWarnings("deprecation")
 @Transactional
-public double CartPrice(int userId) {
+public double CartPrice(String email) {
 	Criteria c=sessionFactory.getCurrentSession().createCriteria(Cart.class);
-	c.add(Restrictions.eq("userId", userId));
+	c.add(Restrictions.eq("email", email));
 	c.add(Restrictions.eq("status","C"));
 	c.setProjection(Projections.sum("subTotal"));
 	double l=  (Double) c.uniqueResult();
@@ -115,11 +115,17 @@ public Cart getCartById(int cart_id) {
 }
 @SuppressWarnings("unchecked")
 @Transactional
-public List<Cart> listCartbyUserId(int userId) {
-	String hql = "from"+" Cart"+" where userId=" + userId;
+public List<Cart> listCartbyEmail( String email) {
+	String hql = "from"+" Cart"+" where userId=" + email;
 
 	List<Cart> lCart = sessionFactory.getCurrentSession().createQuery(hql).list();
 	return lCart;
 
 }
+
+
+
+
+
+
 }
