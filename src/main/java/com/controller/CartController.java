@@ -23,12 +23,18 @@ public class CartController
 	CartDAO cartDAO;
 	
 	@Autowired
+	UserDAO userDAO;
+	
+	@Autowired
 	ProductDAO productDAO;
 	
 	@Autowired
 	AddressDAO addressDAO;
 	
-	
+     @Autowired
+	User user;
+
+	int userId;
 	@RequestMapping(value="/prodDetails/{pid}")
 	public ModelAndView prodDet(@PathVariable("pid")int pid)
 	{
@@ -43,11 +49,21 @@ public class CartController
     @RequestMapping(value="/addToCart/{id}")
     public String addProductToCart(@PathVariable("id") int id, HttpSession session,Model model,RedirectAttributes attributes)
     {
-    	Principal principal= SecurityContextHolder.getContext().getAuthentication();
-    	String email = (String) session.getAttribute("email");
+Principal principal=SecurityContextHolder.getContext().getAuthentication();
+    	
+    	String email=principal.getName();
+    	System.out.println("================Welcome User email======================"+email);
+    	
+    	user= userDAO.getUserId(email);
+    	 userId=user.getId();
+    	
+    	
+    	System.out.println("================Welcome User id======================"+userId);
+    	
+    	
     	int q=1;
-    	if (cartDAO.getitem(id, email) != null) {
-			Cart item = cartDAO.getitem(id,email);
+    	if (cartDAO.getitem(id, userId) != null) {
+			Cart item = cartDAO.getitem(id, userId);
 			
 			item.setProductQuantity(item.getProductQuantity() + q);
 			
@@ -61,33 +77,30 @@ public class CartController
 	
 			return "redirect:/";
 		} else {
-			Cart cart = new Cart();
+			Cart item = new Cart();
 			Product p = productDAO.findByPID(id);
-			cart.setProductid(p.getPid());
-			cart.setProductName(p.getPname());
-			cart.setEmail(principal.getName());
-			cart.setProductQuantity(q);
-			cart.setStatus("C");
-			cart.setSubTotal(q * p.getPrice());
-			cart.setProductPrice(p.getPrice());
-			cartDAO.saveProductToCart(cart);
+			item.setProductid(p.getPid());
+			item.setProductName(p.getPname());
+			item.setUserId(userId);
+			item.setProductQuantity(q);
+			item.setStatus("C");
+			item.setSubTotal(q * p.getPrice());
+			item.setProductPrice(p.getPrice());
+			cartDAO.saveProductToCart(item);
 			attributes.addFlashAttribute("SuccessMessage", "Item"+p.getPname()+" has been deleted Successfully");
 			return "redirect:/";
 		}
     	
     }
 
-
-
-
-    @RequestMapping("viewcart")
+    @RequestMapping("/viewcart")
 	public String viewCart(Model model, HttpSession session) {
     	
-	
+		//int userId = (Integer) session.getAttribute("userid");
 		model.addAttribute("CartList", cartDAO.listCart());
-		 if(cartDAO.cartsize((String) session.getAttribute("email"))!=0){
+		 if(cartDAO.cartsize(userId)!=0){
 			
-			model.addAttribute("CartPrice", cartDAO.CartPrice((String) session.getAttribute("email")));
+			model.addAttribute("CartPrice", cartDAO.CartPrice(userId));
 		} else {
 			model.addAttribute("EmptyCart", "true");
 		}
@@ -96,41 +109,34 @@ public class CartController
 	}
 
 
-
-	@RequestMapping("editCart/{cartid}")
-	public String editorder(@PathVariable("cartid") int cartid, @RequestParam("Quantity") int q, HttpSession session) 
-	{
+    @RequestMapping("editCart/{cartid}")
+	public String editorder(@PathVariable("cartid") int cartid, @RequestParam("quantity") int q, HttpSession session) {
 	
-	
+		//int userId = (Integer) session.getAttribute("userid");
 		Cart cart = cartDAO.editCartById(cartid);
 		Product p = productDAO.findByPID(cart.getProductid());
 		cart.setProductQuantity(q);
-	
+		//cart.setProductPrice(q * p.getPrice());
 		cart.setSubTotal(q * p.getPrice());
 		cartDAO.saveProductToCart(cart);
-		session.setAttribute("cartsize", cartDAO.cartsize((String) session.getAttribute("email")));
+		session.setAttribute("cartsize", cartDAO.cartsize(userId));
 		return "redirect:/viewcart";
 	}
-    
-    
-    
-    
-@RequestMapping(value="removeCart/{id}")
-public String deleteorder(@PathVariable("id") int id, HttpSession session) {
-	cartDAO.removeCartById(id);
-	session.setAttribute("cartsize", cartDAO.cartsize((String) session.getAttribute("email")));
-	return "redirect:/viewcart";
-}
+       
+       
+    @RequestMapping(value="removeCart/{id}")
+    public String deleteorder(@PathVariable("id") int id, HttpSession session) {
+    	cartDAO.removeCartById(id);
+    	session.setAttribute("cartsize", cartDAO.cartsize(userId));
+    	return "redirect:/viewcart";
+    }
 
 
-@RequestMapping("continue_shopping")
-public String continueshopping()
-{
-return "redirect:/";	
+   @RequestMapping("continue_shopping")
+   public String continueshopping()
+   {
+   return "redirect:/";	
 
+   }
 
-
-
-}
-
-}
+   }

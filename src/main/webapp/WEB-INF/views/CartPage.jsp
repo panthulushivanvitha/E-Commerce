@@ -38,7 +38,7 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
+                        <th class="text-center">subTotal</th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -73,20 +73,19 @@
                           <span class="glyphicon glyphicon-remove"></span> Remove
                         </a>
                         <br><br>
-                         <a href="editCart/${cart.cartid }" type="button" class="btn btn-info btn-lg ">
-                          <span class="glyphicon glyphicon-update"></span> updatecart
-                        </a>
+                        
                         
                         </td>
                           </tr>
                           
                     </c:forEach>   
+                    
                            <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>${cart.SubTotal}</strong></h5></td>
+                        <td><h5>Total</h5></td>
+                        <td class="text-right"><h5><strong>${CartPrice}</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -99,9 +98,11 @@
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>${CartPrice}</strong></h3></td>
+                        <%-- <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong>${cart.productPrice}</strong></h3></td> --%>
                     </tr>
+                    
+                    
                     <tr>
                         <td>   </td>
                         <td>   </td>

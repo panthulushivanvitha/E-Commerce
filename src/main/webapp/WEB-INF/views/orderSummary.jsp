@@ -76,10 +76,10 @@
       	 <div class ="jumbotron">
       	 <a class="btn btn-warning btn-block" href="${pageContext.request.contextPath}/processOrder">Place Order</a><br><br/>
       	 <p>Order Summary</p>
-      	 <h5> Items Subtotal :<span class="fa fa-inr"></span>${CartPrice}</h5>
+      	 <h5> Items total :<span class="fa fa-inr"></span>${CartPrice}</h5>
       	 <h5> Delivery Charges:<span class="fa fa-inr"></span>   50.0 </h5>
       	 <hr/>
-      	 <c:set var="ordertot" value="${cartPrice + 50.0}"></c:set>
+      	 <c:set var="ordertot" value="${CartPrice + 50.0}"></c:set>
       	 <p>OrderTotal: <span class="fa fa-inr"></span> ${ordertot}</p>
       
       	 </div>
@@ -107,9 +107,9 @@
 			 <a class="thumbnail pull-left" href=""><img class="media-object" src="/medical/myImage/imageDisplay?id=${cart.productId}" class="img-thumbnail" width="72px" height="72px"/></a>
 					
 			<div class="media-body">
-			<c:forEach items="${productList}" var="product">	
-				<c:if test="${product.productId == cart.productId}">
-			<h4 class="media-heading"><a href="">${product.productName}</a></h4>
+			<c:forEach items="${prodList}" var="product">	
+				<c:if test="${product.pid == cart.productId}">
+			<h4 class="media-heading"><a href="">${product.pname}</a></h4>
                                 <h5 class="media-heading"></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>

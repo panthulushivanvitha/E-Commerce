@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,25 +31,34 @@ public class CheckoutController
 {
 	@Autowired
 	CartDAO cartDAO;
+	
 	@Autowired
 	AddressDAO addressDAO;
-	@Autowired
-	ProductDAO productDAO;
+	
+	
 	@Autowired
 	PaymentDAO paymentDAO;
+	
 	@Autowired
-	OrdersDAO orderDAO;
+	OrdersDAO ordersDAO;
 	@Autowired
-    CategoryDAO categoryDAO;
+	UserDAO userDAO;
+	
+	@Autowired
+	SupplierDAO supplierDAO;
+	
+	@Autowired
+	CategoryDAO categoryDAO;
+	
+	@Autowired
+	ProductDAO productDAO;
+	
 	@RequestMapping(value="checkout",method = RequestMethod.GET)
 	public String showShippingPage(@ModelAttribute("address") Address address,BindingResult result, HttpSession session,Model model){
 		
 		User user = (User) session.getAttribute("user");
-		
 		model.addAttribute("CartList", cartDAO.listCart());
-				
-		
-		return "shipping";
+			return "shipping";
 	}
 	@RequestMapping(value="selectShippingAddress",method = RequestMethod.POST)
 	public String selectShippingAddress(@RequestParam("shipaddress") int id,HttpSession session,Model m,RedirectAttributes attributes){
@@ -57,41 +68,45 @@ public class CheckoutController
 		Address address = addressDAO.getAddressById(id);
 		session.setAttribute("address", address);
 		attributes.addFlashAttribute("address", address);
-		attributes.addFlashAttribute("cartTotalAmount", cartDAO.CartPrice((String) session.getAttribute("email")));
+
+		attributes.addFlashAttribute("cartTotalAmount", cartDAO.CartPrice(user.getId()));
 		
 		return "redirect:/showpaymentPage";
 	}
 	
 	@RequestMapping(value="saveShippingAddress",method = RequestMethod.POST)
 	public String saveShippingPage(@Valid @ModelAttribute("address") Address address,BindingResult result, HttpSession session,Model m,RedirectAttributes attributes){
+			
 		if(result.hasErrors()){
 			System.out.println(result.getAllErrors().toString());
 			return "shipping";
-		}else{
+		}
+		else{
 			
 		User user = (User) session.getAttribute("user");
 		address.setCreatedBy("SYSTEM");
 		address.setCreatedTimestamp(new Timestamp(System.currentTimeMillis()));
-		address.setPersonId((Integer) session.getAttribute("id"));
 		addressDAO.saveOrUpdate(address);
 		session.setAttribute("address", address);
 		attributes.addFlashAttribute("address", address);
-		attributes.addFlashAttribute("cartTotalAmount", cartDAO.CartPrice((String) session.getAttribute("email")));
+		
 
 		return "redirect:/showpaymentPage";
 		}
 	}
 	@RequestMapping(value="showpaymentPage")
 	public String showPaymentPage(@ModelAttribute("payment") Payment payment,BindingResult result,HttpSession session,Model model){
+		
 		User user = (User) session.getAttribute("user");
 		Address address = (Address) session.getAttribute("address");
 		model.addAttribute("address", address);
-		model.addAttribute("cartTotalAmount", cartDAO.CartPrice((String) session.getAttribute("email")));
+		
 		return "paymentPage";
 	}
 	
 	@RequestMapping(value="selectPaymentMethod")
 	public String selectPaymentMethod(@Valid @ModelAttribute("payment") Payment payment,BindingResult result,HttpSession session,Model m,RedirectAttributes attributes){
+		
 		if(result.hasErrors()){
 			System.out.println(result.getAllErrors().toString());
 			return "paymentPage";
@@ -107,7 +122,17 @@ public class CheckoutController
 		}else if(payment.getPaymentMethod().equals("cod")){
 			paymentChoice = "Cash On Delivery";
 		}
+		/*double totalAmount = cartDAO.CartPrice((Integer) session.getAttribute("userId"));
+		payment.setUserId((Integer) session.getAttribute("userId"));
+		payment.setTotalAmount(totalAmount);
+		paymentDAO.savePaymentInfo(payment);
+		*/
 		
+		session.setAttribute("payment", payment);
+		attributes.addFlashAttribute("payment", payment);
+		attributes.addFlashAttribute("paymentChoice", paymentChoice);
+		/*attributes.addFlashAttribute("cartTotalAmount", totalAmount);*/
+
 		
 		return "redirect:/orderSummary";
 		}
@@ -121,7 +146,7 @@ public class CheckoutController
 		Payment payment = (Payment) session.getAttribute("payment");
 		model.addAttribute("address", address);
 		model.addAttribute("payment", payment);
-		model.addAttribute("productList",productDAO.retrieve());
+		model.addAttribute("prodList",productDAO.retrieve());
 		return "orderSummary";
 	}
 	
@@ -148,17 +173,17 @@ public class CheckoutController
 		for(Cart cartItem:cartItemsList){
 			
 			
-			Orders order=new Orders();
+			Orders orders=new Orders();
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-			order.setOrderId(timeStamp);
+			orders.setOrderId(timeStamp);
 			
-			order.setTotalAmount(totalAmount);
-			order.setOrderStatus("PROCESSED");	
-			order.setCreatedTimestamp(new Timestamp(System.currentTimeMillis()));
-			order.setCreatedBy("SYSTEM");
+			orders.setTotalAmount(totalAmount);
+			orders.setOrderStatus("PROCESSED");	
+			orders.setCreatedTimestamp(new Timestamp(System.currentTimeMillis()));
+			orders.setCreatedBy("SYSTEM");
 			
 			
-			orderDAO.saveOrUpdate(order);
+			ordersDAO.saveOrUpdate(orders);
 						
 			Product product = productDAO.findByPID(cartItem.getProductid());
 			int quantityRemaining = product.getPstock() - cartItem.getProductQuantity();
