@@ -51,9 +51,17 @@ public class Address
 	@Pattern(regexp="\\d{10}",message="The mobile number must be a 10 digit number")
 	private String phone;
 	
-	@GeneratedValue
-	private int personId;
 	
+	private String personEmail;
+	
+	public String getPersonEmail() {
+		return personEmail;
+	}
+
+	public void setPersonEmail(String personEmail) {
+		this.personEmail = personEmail;
+	}
+
 	@NotNull(message="The address type cannot be left blank")
 	private String addressType;
 	
@@ -145,13 +153,6 @@ public class Address
 		this.phone = phone;
 	}
 
-	public int getPersonId() {
-		return personId;
-	}
-
-	public void setPersonId(int personId) {
-		this.personId = personId;
-	}
 
 	public String getAddressType() {
 		return addressType;

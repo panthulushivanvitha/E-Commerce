@@ -13,16 +13,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.CartDAO;
 import com.model.Cart;
+@Transactional
 @Repository
 public class CartDAOImpl implements CartDAO
 {
 public CartDAOImpl(){}
 	
 	@Autowired
-	SessionFactory sessionFactory;
+	 private SessionFactory sessionFactory;
 
-	public CartDAOImpl(SessionFactory sessionFactory) {
+	public void setSessionFactory(SessionFactory sessionFactory) {
 	
+		this.sessionFactory = sessionFactory;
+	}
+	public CartDAOImpl(SessionFactory sessionFactory) {
+		
 		this.sessionFactory = sessionFactory;
 	}
 
@@ -35,8 +40,8 @@ public CartDAOImpl(){}
 
 	
 	@Transactional
-	public Cart getitem(int prodId, String email) {
-		String hql = "from"+" Cart"+" where email="+email+" and productid="+prodId;
+	public Cart getitem(int prodId, int userId) {
+		String hql = "from"+" Cart"+" where id="+userId+" and productid="+prodId;
 		@SuppressWarnings("rawtypes")
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -68,11 +73,11 @@ public CartDAOImpl(){}
 
 @SuppressWarnings("deprecation")
 @Transactional
-public long cartsize(String email) {
+public long cartsize(int userId) {
 	Criteria c=sessionFactory.getCurrentSession().createCriteria(Cart.class);
-	c.add(Restrictions.eq("email", email));
+	c.add(Restrictions.eq("userId", userId));
 	c.add(Restrictions.eq("status","C"));
-	c.setProjection(Projections.count("email"));
+	c.setProjection(Projections.count("userId"));
 	long count= (Long) c.uniqueResult();
 	return count;
 }
@@ -80,9 +85,9 @@ public long cartsize(String email) {
 
 @SuppressWarnings("deprecation")
 @Transactional
-public double CartPrice(String email) {
+public double CartPrice(int userId) {
 	Criteria c=sessionFactory.getCurrentSession().createCriteria(Cart.class);
-	c.add(Restrictions.eq("email", email));
+	c.add(Restrictions.eq("userId", userId));
 	c.add(Restrictions.eq("status","C"));
 	c.setProjection(Projections.sum("subTotal"));
 	double l=  (Double) c.uniqueResult();
@@ -115,13 +120,20 @@ public Cart getCartById(int cart_id) {
 }
 @SuppressWarnings("unchecked")
 @Transactional
-public List<Cart> listCartbyEmail( String email) {
-	String hql = "from"+" Cart"+" where userId=" + email;
+public List<Cart> listCartbyUserId( int userId) {
+	String hql = "from"+" Cart"+" where userId=" + userId;
 
-	List<Cart> lCart = sessionFactory.getCurrentSession().createQuery(hql).list();
-	return lCart;
+	List<Cart> cartList = sessionFactory.getCurrentSession().createQuery(hql).list();
+	return cartList;
 
 }
+
+
+
+
+
+
+
 
 
 

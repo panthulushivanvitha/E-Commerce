@@ -6,7 +6,7 @@ public interface UserDAO
 {
 
 		public void insertUser(User user);
-		public User findUserByEmail(String email);
+		public User getUserId(String email);
 
 
 

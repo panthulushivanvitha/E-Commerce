@@ -29,9 +29,18 @@ public class Payment
 	
 	private String cardType;
 		
-	private int userId;
-	
+	private  int userId;
 	private double totalAmount;
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	
 
 	public int getId() {
 		return id;
@@ -89,13 +98,6 @@ public class Payment
 		this.cardType = cardType;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	public double getTotalAmount() {
 		return totalAmount;
