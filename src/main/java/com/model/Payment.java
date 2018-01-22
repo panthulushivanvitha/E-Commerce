@@ -12,8 +12,11 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class Payment
+public class Payment 
+
 {
+
+
 	@Id
 	@GeneratedValue
 	private int id;
@@ -29,18 +32,9 @@ public class Payment
 	
 	private String cardType;
 		
-	private  int userId;
+	private int userId;
+	
 	private double totalAmount;
-	
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	
 
 	public int getId() {
 		return id;
@@ -98,6 +92,13 @@ public class Payment
 		this.cardType = cardType;
 	}
 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public double getTotalAmount() {
 		return totalAmount;
@@ -108,5 +109,3 @@ public class Payment
 	}
 
 }
-
-

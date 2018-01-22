@@ -1,5 +1,4 @@
 package com.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Cart {
-	
+
 	@Column(name="cart_id")
 	@Id
 	@GeneratedValue
@@ -22,7 +21,14 @@ public class Cart {
 	private double subTotal;
 	private String status;
 	private int userId;
+	private String imagName;
 	
+	public String getImagName() {
+		return imagName;
+	}
+	public void setImagName(String imagName) {
+		this.imagName = imagName;
+	}
 	public int getCartid() {
 		return cartid;
 	}

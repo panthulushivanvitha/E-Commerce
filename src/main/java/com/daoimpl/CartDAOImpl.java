@@ -2,6 +2,8 @@ package com.daoimpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -9,25 +11,21 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.CartDAO;
 import com.model.Cart;
-@Transactional
+
 @Repository
 public class CartDAOImpl implements CartDAO
 {
+
 public CartDAOImpl(){}
 	
 	@Autowired
-	 private SessionFactory sessionFactory;
+	SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-	
-		this.sessionFactory = sessionFactory;
-	}
 	public CartDAOImpl(SessionFactory sessionFactory) {
-		
+	
 		this.sessionFactory = sessionFactory;
 	}
 
@@ -41,7 +39,7 @@ public CartDAOImpl(){}
 	
 	@Transactional
 	public Cart getitem(int prodId, int userId) {
-		String hql = "from"+" Cart"+" where id="+userId+" and productid="+prodId;
+		String hql = "from"+" Cart"+" where userid="+userId+" and productid="+prodId;
 		@SuppressWarnings("rawtypes")
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
@@ -120,24 +118,11 @@ public Cart getCartById(int cart_id) {
 }
 @SuppressWarnings("unchecked")
 @Transactional
-public List<Cart> listCartbyUserId( int userId) {
+public List<Cart> listCartbyUserId(int userId) {
 	String hql = "from"+" Cart"+" where userId=" + userId;
 
-	List<Cart> cartList = sessionFactory.getCurrentSession().createQuery(hql).list();
-	return cartList;
+	List<Cart> lCart = sessionFactory.getCurrentSession().createQuery(hql).list();
+	return lCart;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

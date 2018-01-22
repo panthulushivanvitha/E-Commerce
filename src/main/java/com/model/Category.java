@@ -1,37 +1,55 @@
 package com.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import org.springframework.stereotype.Component;
+
+
 @Component
 @Entity
 
-public class Category implements Serializable
+public class Category 
+
 {
 	@Id
+	@GeneratedValue
+	@Column(name="category_id")
 	private int cid;
-	private String cname;
+	
+	private String categoryName;
+	 
+	 private String categoryDescription;
+
+	
+	 @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
+	 private Set<Product> products = new HashSet<Product>();
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
 	public int getCid() {
 		return cid;
 	}
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	public String getCname() {
-		return cname;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
-	public void setCname(String cname) {
-		this.cname = cname;
+	public String getCategoryDescription() {
+		return categoryDescription;
 	}
-	
-	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER, mappedBy="category")
-	private Set<Product> product=new HashSet<Product>(0);
+	public void setCategoryDescription(String categoryDescription) {
+		this.categoryDescription = categoryDescription;
+	}
 	
 
 }

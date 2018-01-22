@@ -6,14 +6,14 @@ import com.model.*;
 
 public interface ProductDAO
 {
-	public void insertProduct(Product product);
 
-	public Product findByPID(int pid);
-	public List<Product> retrieve();
 
+	public boolean saveProduct(Product product);
+	public List<Product> list();
+	public Product getProductById(int product_id);
+	public Product removeProducyById(int product_id);
+	public List<Product> getProductByCategory(int category_id);
+	public List<Product> getProductByCategoryID(int category_id);
 	
 
-
-	
-
-}
+}  

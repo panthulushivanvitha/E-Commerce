@@ -2,16 +2,14 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-
 import com.model.Cart;
 
 public interface CartDAO 
 {
-	public void setSessionFactory(SessionFactory sessionFactory) ;
-public boolean saveProductToCart(Cart cart);
+
+	public boolean saveProductToCart(Cart cart);
 	
-public Cart getitem(int prodId, int userId);
+	public Cart getitem(int prodId,int userId);
 	
 	public List<Cart>listCart();
 	public boolean removeCartById(int cart_id);
@@ -24,5 +22,4 @@ public Cart getitem(int prodId, int userId);
 	public Cart getCartById(int cart_id);
 	
 	public List<Cart>listCartbyUserId(int userId);
-
 }

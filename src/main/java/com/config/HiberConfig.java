@@ -70,60 +70,57 @@ private Properties getHiber()
    
     
     @Autowired
-    @Bean(name="userDAO")
-    public UserDAO saveUserData(SessionFactory sessionFactory)
-    {
-    	return new UserDAOImpl(sessionFactory);
-    }
-    
-    @Autowired
-    @Bean(name="supplierDAO")
-    public SupplierDAO  saveSupplierData(SessionFactory sessionFactory)
-    {
-    	return new SupplierDAOImpl(sessionFactory);
-    }
-    
-    @Autowired
-    @Bean(name="categoryDAO")
-    public CategoryDAO saveCategoryData(SessionFactory sessionFactory)
-    {
-    	return new CategoryDAOImpl(sessionFactory);
-    }
- 
-    @Autowired
-    @Bean(name="productDAO")
-    public ProductDAO saveProdData(SessionFactory sessionFactory)
-    {
-    	return new ProductDAOImpl(sessionFactory);
-    }
-    @Autowired
-	@Bean(name="cartDAO")
-	public CartDAO getCart(SessionFactory sessionFactory)
-	{
-		return new CartDAOImpl(sessionFactory);
+	@Bean(name = "userDAO")
+	public UserDAO getUserDAO(SessionFactory sessionFactory) {
+	    return new UserDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "supplierDAO")
+	public SupplierDAO saveSuppData(SessionFactory sessionFactory) {
+	    return new SupplierDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "categoryDAO")
+	public CategoryDAO saveCatData(SessionFactory sessionFactory) {
+	    return new CategoryDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "productDAO")
+	public ProductDAO saveProduct(SessionFactory sessionFactory) {
+	    return new ProductDAOImpl(sessionFactory);
+	}
+	    @Autowired
+		@Bean(name="cartDAO")
+		public CartDAO getCart(SessionFactory sessionFactory)
+		{
+			return new CartDAOImpl(sessionFactory);
+			
+		}
+		@Autowired
+		@Bean(name = "addressDAO")
+		public AddressDAO getAddressDAO(SessionFactory sessionFactory)
+		{
+
+			return new AddressDAOImpl(sessionFactory);
+		}
 		
-	}
-	@Autowired
-	@Bean(name = "addressDAO")
-	public AddressDAO getAddressDAO(SessionFactory sessionFactory)
-	{
+		
+		@Autowired
+		@Bean(name = "orderDAO")
+		public OrdersDAO getOrdersDAO(SessionFactory sessionFactory)
+		{
 
-		return new AddressDAOImpl(sessionFactory);
-	}
-	@Autowired
-	@Bean(name = "ordersDAO")
-	public OrdersDAO getOrdersDAO(SessionFactory sessionFactory)
-	{
+			return new OrdersDAOImpl(sessionFactory);
+		}
+		@Autowired
+		@Bean(name = "paymentDAO")
+		public PaymentDAO getPaymentDAO(SessionFactory sessionFactory)
+		{
 
-		return new OrdersDAOImpl(sessionFactory);
-	}
-	@Autowired
-	@Bean(name = "paymentDAO")
-	public PaymentDAO getPaymentDAO(SessionFactory sessionFactory)
-	{
-
-		return new PaymentDAOImpl(sessionFactory);
-	}
-}
-
-
+			return new PaymentDAOImpl(sessionFactory);
+		}
+	
+} 

@@ -1,23 +1,18 @@
 package com.model;
 
 
-
-
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
 @Entity
 @Table
 @Component
-
-public class Orders 
-{
-
+public class Orders {
 	@Id
 	private String orderId;
 	
@@ -42,6 +37,15 @@ public class Orders
 	private String createdBy;
 	
 	private Timestamp updatedTimestamp;
+	public String getImagName() {
+		return imagName;
+	}
+
+	public void setImagName(String imagName) {
+		this.imagName = imagName;
+	}
+
+	private String imagName;
 	
 	private String updatedBy;
 

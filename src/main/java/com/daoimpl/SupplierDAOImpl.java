@@ -1,89 +1,74 @@
 package com.daoimpl;
 
+
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+import javax.transaction.Transactional;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.dao.SupplierDAO;
 
+import com.dao.SupplierDAO;
 import com.model.Supplier;
 
+@SuppressWarnings("deprecation")
 @Repository
-public class SupplierDAOImpl implements SupplierDAO
-{
+public class SupplierDAOImpl implements SupplierDAO {
+
+public  SupplierDAOImpl(){}
+	
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
-	
-	
-	public SupplierDAOImpl(SessionFactory sessionFactory)
-	{
+	public SupplierDAOImpl(SessionFactory sessionFactory) {
+		
 		this.sessionFactory = sessionFactory;
 	}
-	
-	
-	public void insertSupplier(Supplier supplier)
-	{
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(supplier);
-	
-		session.getTransaction().commit();
+
+
+	@Transactional
+	public boolean saveSupplier(Supplier supplier) {
+		sessionFactory.getCurrentSession().saveOrUpdate(supplier);
 		
+		return true;
 	}
-	public List<Supplier> retrieve()
-	{
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		List<Supplier> li= session.createQuery("from Supplier").list();
-		session.getTransaction().commit();
-		return li;
+
+	
+	@Transactional
+	public List<Supplier> list() {
+		@SuppressWarnings("unchecked")
+		List<Supplier> listSupplier = (List<Supplier>) sessionFactory.getCurrentSession()
+				.createCriteria(Supplier.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+
+		return listSupplier;
 	}
-	public Supplier findBySuppId(int sid)
-	{
-		Session session=sessionFactory.openSession();
-		Supplier s=null;
-		try
-		{
-			session.beginTransaction();
-			s= session.get(Supplier.class, sid);
-			session.getTransaction().commit();
+
+	@Transactional
+	public Supplier getSupplierById(int supplier_id) {
+		String hql = "from"+" Supplier"+" where id=" + supplier_id;
+		@SuppressWarnings("rawtypes")
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<Supplier> listSupplier = (List<Supplier>) query.list();
+		
+		if (listSupplier != null && !listSupplier.isEmpty()) {
+			return listSupplier.get(0);
 		}
-		catch(HibernateException e)
-		{
-			System.out.println(e.getMessage());
-			session.getTransaction().rollback();
-		}
-		return s;
-	}
-
-
-	
-	public void updateSupp(Supplier s)
-	{
-	Session session=sessionFactory.openSession();
-	session.beginTransaction();
-	session.update(s);
-	session.getTransaction().commit();
-	}
-
-	public void deleteSupp(int sid) {
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		Supplier s=(Supplier)session.get(Supplier.class,sid);
-		session.delete(s);
-		session.getTransaction().commit();
-	}
-}
 		
+		return null;
+	}
+
+	@Transactional
+	public Supplier removeSupplierById(int supplier_id) {
+		Supplier SupplierToDelete = new Supplier();
+		SupplierToDelete.setSid(supplier_id);
+		sessionFactory.getCurrentSession().delete(SupplierToDelete);
+		return SupplierToDelete;
+	}
 	
-		
-
-
-
-
-	
-
+	}

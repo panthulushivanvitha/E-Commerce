@@ -1,26 +1,20 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import org.springframework.stereotype.Component;
-
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
-
 @Entity
 @Table
-@Component
+public class Address {
 
-public class Address
-{
 	@Id
 	@GeneratedValue
 	private int id;
@@ -51,17 +45,8 @@ public class Address
 	@Pattern(regexp="\\d{10}",message="The mobile number must be a 10 digit number")
 	private String phone;
 	
+	private int personId;
 	
-	private String personEmail;
-	
-	public String getPersonEmail() {
-		return personEmail;
-	}
-
-	public void setPersonEmail(String personEmail) {
-		this.personEmail = personEmail;
-	}
-
 	@NotNull(message="The address type cannot be left blank")
 	private String addressType;
 	
@@ -153,6 +138,13 @@ public class Address
 		this.phone = phone;
 	}
 
+	public int getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
 
 	public String getAddressType() {
 		return addressType;
@@ -194,5 +186,5 @@ public class Address
 		this.updatedBy = updatedBy;
 	}
 
+	
 }
-

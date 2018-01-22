@@ -1,15 +1,20 @@
 package com.daoimpl;
+
+
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import com.dao.PaymentDAO;
 import com.model.Payment;
+
 @Repository("paymentDAO")
 public class PaymentDAOImpl implements PaymentDAO
 {
@@ -43,7 +48,7 @@ public PaymentDAOImpl(SessionFactory sessionFactory) {
 	}
 	@Transactional
 	public boolean savePaymentInfo(Payment payment) {
-	
+		// TODO Auto-generated method stub
 		try{
 			log.info("PaymentDaoImpl : save or update Payment detail");
 			sessionFactory.getCurrentSession().saveOrUpdate(payment);
@@ -56,7 +61,7 @@ public PaymentDAOImpl(SessionFactory sessionFactory) {
 	
 	@Transactional
 	public Payment getPaymentInfo(int paymentId) {
-		
+		// TODO Auto-generated method stub
 		log.info("PaymentDaoImpl : get Payment detail by payment Id");
 		Payment payment= (Payment) sessionFactory.getCurrentSession().createQuery("from Payment where id = :Id")
 				.setParameter("Id", paymentId).uniqueResult();
@@ -65,5 +70,3 @@ public PaymentDAOImpl(SessionFactory sessionFactory) {
 		return payment;
 	}
 }
-
-

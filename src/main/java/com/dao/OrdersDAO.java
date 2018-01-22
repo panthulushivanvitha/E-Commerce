@@ -13,5 +13,4 @@ public boolean saveOrUpdate(Orders order);
 	public boolean deleteOrderById(int orderId);
 	
 	public List<Orders> getAllOrdersOfUser(int userId);
-
 }
