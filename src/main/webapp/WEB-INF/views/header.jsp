@@ -38,36 +38,56 @@
        </c:if>
                  
         <c:if test="${pageContext.request.userPrincipal.name == 'vidyavilasini@gmail.com'}">
-        <li><a href="${pageContext.request.contextPath}/adding">Admin</a></li>
-        
- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/admin">Admin List<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        <li><a href="${pageContext.request.contextPath}/productList">Product</a></li>
-        <li><a href="${pageContext.request.contextPath}/supplierList">Supplier</a></li>
-        <li><a href="${pageContext.request.contextPath}/categoryList">Category</a></li>
-        
-        </ul>
-        </li> 
-        </c:if> 
-           
-    
        
-        <li><a href="${pageContext.request.contextPath}/viewcart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart
-        <i class="fa fa-cart-plus" aria-hidden="true"></i></a></li>
-      </ul>
-        <!-- <div class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" >
-      Category Choice<span class="caret"></span></a> 
-      <ul class="dropdown-menu"> -->
+        
+<%--  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/admin">Admin List<span class="caret"></span></a>
+        <ul class="dropdown-menu"> --%>
+        <ul class="nav navbar-nav navbar-right">
+       <li><a href="category">Category</a></li>
+       <li><a href="supplier">Supplier</a></li>
+        <li><a href="product">Product</a></li>
+      
+          <c:choose>
+		<c:when test="${ProductPageClicked}">
+			<c:import url="/WEB-INF/views/ProductPage.jsp"></c:import>
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${CategoryPageClicked}">
+			<c:import url="/WEB-INF/views/CategoryPage.jsp"></c:import>
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${SupplierPageClicked}">
+			<c:import url="/WEB-INF/views/SupplierPage.jsp"></c:import>
+		</c:when>
+	</c:choose>           
+        
+        <!-- </ul>
+        </li>  -->
+        </c:if> 
+        <li><a href="${pageContext.request.contextPath}/viewcart"><span class="glyphicon glyphicon-shopping-cart"></span>cart</a>
+        <li class="dropdown"><a href="index.html"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false"> <span
+							class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							Category <span class="caret"></span></a>
+						<ul class="dropdown-menu">
       <c:forEach var="catval" items="${catList}">
-      <li><a href="${pageContext.request.contextPath}/productCustList?cid=${catval.cid}">${catval.cname}</a>
+      <li><a href="${pageContext.request.contextPath}/productCustList?cid=${catval.cid}">${catval.categoryName}</a>
       </li>
       </c:forEach>
-     
-    </div>
-  </div>
-</nav>
   
+          
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br>
+
+	
+	
 
 </head>
 <body>

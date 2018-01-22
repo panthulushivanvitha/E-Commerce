@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -212,13 +212,12 @@
 
 </div>
 
-<div class="fileinputfileinput-new" data-provides="fileinput">
-
-<td>Product Image</td>
-
-<td><input class="form-control" type="file" name="file" accept="image/*"></td>
-
-</div>
+	<div class="form-group">
+		<label for="Product Image" class="col-xs-4 control-label">Product Image</label>
+		<div class="col-xs-4">
+		<input type="file" name="file" class="form-control" />
+		</div>
+	</div>
 
 <br><br>
 
@@ -248,4 +247,4 @@
 
 </body>
 
-</html> 
+</html>  --%>

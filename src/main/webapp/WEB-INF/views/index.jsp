@@ -1,22 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<title>HOME DECORS</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<title>HOME DECORS</title>
+
 </head>
-<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\17.jpg">
-
-
-
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\17.jpg" background-size:100% ;">
 <jsp:include page="header.jsp"></jsp:include>
-
-
-
- <div class="container" >
+<div class="container" >
  <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -45,6 +40,13 @@
 </a>
 </div>
 </div>
+<div>
+<body>
+<jsp:include page="Footer.jsp"></jsp:include>
+</body>
+</div>
+
+	
  </body>
 </html>
 

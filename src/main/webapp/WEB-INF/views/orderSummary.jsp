@@ -14,7 +14,7 @@
 <title>Order Summary</title>
 </head>
 
-<body>
+<body style = "background : url(http://s1.picswalls.com/wallpapers/2016/06/06/eiffel-tower-desktop-background_094749463_307.jpg); background-size:100% ;">
 
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
@@ -32,17 +32,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="continue_shopping">HOME</a></li>
-                    <li class="">
-                        <a href="#" data-toggle="" class="dropdown-toggle"> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="category"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </li>
+                    
+                    <li class="active"><a href="http://localhost:9999/FrontEcom/"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
+                    
                 </ul>
                  </div>
     </nav>
@@ -76,10 +69,10 @@
       	 <div class ="jumbotron">
       	 <a class="btn btn-warning btn-block" href="${pageContext.request.contextPath}/processOrder">Place Order</a><br><br/>
       	 <p>Order Summary</p>
-      	 <h5> Items total :<span class="fa fa-inr"></span>${CartPrice}</h5>
+      	 <h5> Items Subtotal :<span class="fa fa-inr"></span>${cartTotalAmount}</h5>
       	 <h5> Delivery Charges:<span class="fa fa-inr"></span>   50.0 </h5>
       	 <hr/>
-      	 <c:set var="ordertot" value="${CartPrice + 50.0}"></c:set>
+      	 <c:set var="ordertot" value="${cartTotalAmount + 50.0}"></c:set>
       	 <p>OrderTotal: <span class="fa fa-inr"></span> ${ordertot}</p>
       
       	 </div>
@@ -104,12 +97,11 @@
 			<tr>
 			 <td class="col-sm-8 col-md-6">
 			<div class="media">
-			 <a class="thumbnail pull-left" href=""><img class="media-object" src="/medical/myImage/imageDisplay?id=${cart.productId}" class="img-thumbnail" width="72px" height="72px"/></a>
 					
 			<div class="media-body">
-			<c:forEach items="${prodList}" var="product">	
-				<c:if test="${product.pid == cart.productId}">
-			<h4 class="media-heading"><a href="">${product.pname}</a></h4>
+			<c:forEach items="${productList}" var="product">	
+				<c:if test="${product.pid == cart.productid}">
+			<h4 class="media-heading"><a href="">${product.name}</a></h4>
                                 <h5 class="media-heading"></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
@@ -150,4 +142,9 @@
   </div>
   </div>
 </body>
-</html> 
+<div>
+<body>
+<jsp:include page="Footer.jsp"></jsp:include>
+</body>
+</div>
+</html>

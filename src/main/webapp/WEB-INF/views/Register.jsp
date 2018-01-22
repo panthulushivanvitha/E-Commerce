@@ -22,7 +22,7 @@
 
 </head>
 
-	<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\24.jpg">
+	<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\46.jpg">
 
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">

@@ -1,28 +1,57 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+ <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>   
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Shipping Address</title>
+
 </head>
-<body>
-<jsp:include page="header.jsp"></jsp:include>
+
+<body style = "background : url(http://s1.picswalls.com/wallpapers/2016/06/06/eiffel-tower-desktop-background_094749463_307.jpg); background-size:100% ;">
+<div class="bs-example">
+    <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
+            <div class="navbar-header">
+              <!--   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> -->
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                   <li class="active"><a href="http://localhost:9999/FrontEcom/"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
+                    </ul>
+                 </div>
+    </nav>
+</div>
+
+
 <div id="wrap">
-<div class="container clear-top">
+<div class="container clear-top" >
 <c:if test="${not empty addressList}">
 	<form  action="selectShippingAddress" method="post">
 			<h3>Select a delivery Address:</h3>
 			<hr>
-			<div class="row">
+			<div class="row" >
 			<c:forEach var="address" items="${addressList}" varStatus="loopCounter">
 			<div class="col-md-4 col-xs-4">
 						<c:choose>	
 						<c:when test="${loopCounter.index==0}">
 								<div class="radio">
+								<font color="red">
 								<input type="radio" name="shipaddress" value="${address.id}" checked> <p> ${address.name}<br/>
 					      		${address.address1}
 					      		<br/>${address.address2}
@@ -34,7 +63,7 @@
 					      		<c:when test="${not empty address.phone}">${address.phone}</c:when>
 					      		</c:choose>
 					      		 </p>
-					      		 </div>	
+					      		 </div>	</font>
 					      </c:when>
 					      <c:otherwise>
 					      	<div class="radio">
@@ -158,4 +187,4 @@
 </div>
 </div>
 </body>
-</html> 
+</html>

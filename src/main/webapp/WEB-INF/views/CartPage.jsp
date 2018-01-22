@@ -24,9 +24,8 @@
     }
 </style>
 </head>
-<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\23.jpg">
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\54.jpg" background-size:100% ;">
 <jsp:include page="header.jsp"></jsp:include>
-
 
 
 <div class="container">
@@ -35,10 +34,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">subTotal</th>
+                        <th style="color:white">Product</th>
+                        <th style="color:white">Quantity</th>
+                        <th class="text-center"style="color:white">Price</th>
+                        <th class="text-center"style="color:white">Total</th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -53,7 +52,7 @@
                          <a class="thumbnail pull-left" href="">
                          <img height="100px"
 						width="100px" alt="${cart.productid}"
-						src="<c:url value="/resources/${cart.productid}.jpg"></c:url>"> </a>
+						src="${pageContext.request.contextPath}/resources/${cart.imagName}"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${cart.productName}</a></h4>
                                 <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
@@ -66,43 +65,31 @@
                         
                         </form>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${cart.productPrice}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center" ><strong>${cart.productPrice}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${cart.subTotal}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         <a href="removeCart/${cart.cartid }" type="button" class="btn btn-danger">
                           <span class="glyphicon glyphicon-remove"></span> Remove
                         </a>
-                        <br><br>
-                        
                         
                         </td>
                           </tr>
                           
                     </c:forEach>   
-                    
-                           <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Total</h5></td>
-                        <td class="text-right"><h5><strong>${CartPrice}</strong></h5></td>
-                    </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
+                        <td><h5style="color:white">Estimated shipping</h5></td>
                         <td class="text-right"><h5><strong>50/-</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <%-- <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>${cart.productPrice}</strong></h3></td> --%>
+                        <td><h3style="color:white">Total</h3></td>
+                        <td class="text-right"><h3 style="color:white"><strong>${CartPrice}</strong></h3></td>
                     </tr>
-                    
-                    
                     <tr>
                         <td>   </td>
                         <td>   </td>
@@ -126,5 +113,10 @@
 
 
 </body>
+<div>
+<body>
+<jsp:include page="Footer.jsp"></jsp:include>
+</body>
+</div>
 
 </html>

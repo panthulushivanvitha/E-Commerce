@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -6,7 +6,7 @@
 
 <head>
 
-<title>HOMDECORS</title>
+<title>HOMEDECORS</title>
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
 
 </head>
 
-<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\22.jpg">
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\123.jpg">
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
@@ -94,3 +94,4 @@
 </body>
 
 </html>
+ --%>

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\22.jpg">
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\123.jpg"">
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <div class="container">
 <h2>Supplier List For Admin</h2>
@@ -44,4 +44,4 @@
 
 
 </body>
-</html>
+</html> --%>

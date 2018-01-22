@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -26,7 +25,7 @@ $( document ).ready(function() {
 </script>
 </head>
 
-<body>
+<body background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\30.jpg" background-size:100% ;">
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,17 +42,10 @@ $( document ).ready(function() {
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="continue_shopping">HOME</a></li>
-                    <li class="">
-                        <a href="#" > <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="category"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </li>
+                   
+<li class="active"><a href="http://localhost:9999/FrontEcom/"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME</a></li>
+                    
                 </ul>
                  </div>
     </nav>
@@ -62,8 +54,8 @@ $( document ).ready(function() {
 
 <div id="wrap">
 <div id="main" class="container clear-top">
-
-  <h3>Select a Payment Method</h3>
+<font color="red">
+  <h3>Select a Payment Method</h3></font>
   <hr>
   <form:form commandName="payment" action="selectPaymentMethod" method="post">
   						<div class="row">
@@ -182,6 +174,11 @@ $( document ).ready(function() {
 <br/>
 <br/>
 </body>
+<div>
+<body>
+<jsp:include page="Footer.jsp"></jsp:include>
+</body>
+</div>
 
 
-</html> 
+</html>

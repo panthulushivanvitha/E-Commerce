@@ -15,10 +15,9 @@
   
     <link rel="stylesheet" href="<c:url value="resources/assets/css/Pretty-Registration-Form.css"/>">
     <link rel="stylesheet" href="<c:url value="resources/assets/css/Google-Style-Login.css"/>">
-</head>
   
 </head>
-<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\3.jpg" background="100% 100%">
+<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\90.jpg" background="100% 100%">
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->

@@ -17,4 +17,9 @@
 <h1>Authentication Error!!</h1>
 <h3>Go Back To Home or<a href="${pageContext.request.contextPath}/reLogin">Login</a>page</h3>
 </body>
+<div>
+<body>
+<jsp:include page="Footer.jsp"></jsp:include>
+</body>
+</div>
 </html>
