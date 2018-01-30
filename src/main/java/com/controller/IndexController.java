@@ -39,6 +39,13 @@ public class IndexController
 		
 			return "index";
 		}
+		
+		@RequestMapping("Login")
+		public String log()
+		{
+		
+			return "Login";
+		}
 
 		@RequestMapping("/index")
 		public String home()

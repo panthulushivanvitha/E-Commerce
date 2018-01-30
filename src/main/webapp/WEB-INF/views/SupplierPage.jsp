@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 </head>
-<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\31.jpg" background="100% 100%">
+<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\46.jpg" background="100% 100%">
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -99,7 +99,7 @@
 
 
 	
-		<table class="table table-striped table-bordered"  style="width: 80%">
+		<table class="table  table-bordered"  style="width: 80%">
 			<thead>
 				<tr>
 					<th width="2%">S.N</th>
@@ -112,7 +112,7 @@
 			<tbody>
 				<c:forEach items="${supplierList}" var="supplier" varStatus="loopCounter">
 					<tr>
-						<td><c:out value="${loopCounter.count}" /></td>
+						<td bg-info><c:out value="${loopCounter.count}"  /></td>
 						<td><c:out value="${supplier.sid}" /></td>
 						<td><c:out value="${supplier.supplierName}" /></td>
 						<td><c:out value="${supplier.supplierAddress}" /></td>

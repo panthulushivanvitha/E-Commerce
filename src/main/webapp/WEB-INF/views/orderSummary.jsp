@@ -14,7 +14,7 @@
 <title>Order Summary</title>
 </head>
 
-<body style = "background : url(http://s1.picswalls.com/wallpapers/2016/06/06/eiffel-tower-desktop-background_094749463_307.jpg); background-size:100% ;">
+<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\123.jpg" background-size:100% ;">
 
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">

@@ -52,7 +52,7 @@
                          <a class="thumbnail pull-left" href="">
                          <img height="100px"
 						width="100px" alt="${cart.productid}"
-						src="${pageContext.request.contextPath}/resources/${cart.imagName}"> </a>
+						src="${pageContext.request.contextPath}/resources/${cart.imagName}" > </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${cart.productName}</a></h4>
                                 <h5 class="media-heading"> by <a href="#">Brand name</a></h5>

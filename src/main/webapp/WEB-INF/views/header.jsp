@@ -24,7 +24,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="index">Home</a></li>
+        <li><a href="http://localhost:8080/HOMEDECORS1/">Home</a></li>
        <li><a href="contact"><i class="fa fa-adress-book" aria-hidden="true"></i></a>
             
       <ul class="nav navbar-nav navbar-right">

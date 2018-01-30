@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="http://localhost:8080/HOMEDECORS1/">HOME</a></li>
-                    <li><a href="goToSignUp"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+                    <li><a href="goToRegister"><span class="glyphicon glyphicon-user"></span> Register</a></li>
                   
                 </ul>
                  </div>

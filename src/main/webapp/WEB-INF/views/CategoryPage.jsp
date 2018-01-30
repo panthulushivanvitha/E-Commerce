@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 </head>
-<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\31.jpg" background="100% 100%">
+<body  background="C:\Users\SHIVANVITHAAMMULU\Desktop\project\46.jpg" background="100% 100%">
 <div class="bs-example">
     <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
